@@ -1,0 +1,33 @@
+:root {
+  --color1: #0f0f0f;
+  --color2: #495057;
+  --color3: #ced4da;
+  --txt-color: #fff;
+  --brandColor: #ff0000;
+  --font-family: "Montserrat", sans-serif;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-family);
+  color: var(--txt-color);
+  line-height: 1.5;
+  background-color: var(--color1);
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: var(--txt-color);
+}
