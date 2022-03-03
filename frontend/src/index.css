@@ -31,3 +31,17 @@ a {
   text-decoration: none;
   color: var(--txt-color);
 }
+
+div.swiper-button-next,
+div.swiper-button-prev {
+  color: rgb(255, 255, 255);
+  top: 40%;
+}
+div.swiper-button-next:hover,
+div.swiper-button-prev:hover {
+  transform: scale(1.2);
+  transition: all 450ms;
+}
+.swiper-pagination-bullet-active {
+  background-color: var(--brandColor) !important;
+}
