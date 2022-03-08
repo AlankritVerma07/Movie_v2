@@ -25,7 +25,7 @@ const MovieSlide = () => {
           params,
         });
         // console.log(response);
-        console.log(response.data.results);
+        // console.log(response.data.results);
         setMovieItems(response.data.results.slice(1, 7));
       } catch (error) {
         console.log(error);

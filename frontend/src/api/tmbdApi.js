@@ -46,5 +46,9 @@ const tmbdApi = {
     const url = category[cat] + "/" + id + "/similar";
     return axiosMovies.get(url, { params: {} });
   },
+  getGenres: (cat) => {
+    const url = "/genre/" + category[cat] + "/list";
+    return axiosMovies.get(url, { params: {} });
+  },
 };
 export default tmbdApi;
