@@ -14,9 +14,7 @@ const MovieCard = (props) => {
     })
     .slice(0, 3)
     .join(", ");
-  // genresStr
 
-  // console.log(genresStr);
   const background = apiMovie.w500Image(
     item.poster_path ? item.poster_path : item.backdrop_path
   );

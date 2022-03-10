@@ -3,17 +3,19 @@ import Header from "./Components/Layout/Header";
 import MovieSlide from "./Components/UI/MovieSlide";
 // import "swiper/swiper.min.css";
 // import "swiper/swiper-bundle.min.css";
-import { Fragment } from "react";
+import Wrapper from "../src/Components/Layout/Wrapper";
 import Home from "./pages/Home";
+import Detail from "./pages/Detail";
 
 function App() {
   return (
-    <Fragment>
+    <Wrapper>
       <Header />
-      <MovieSlide />
-      <Home />
+      {/*<MovieSlide />
+      <Home />*/}
+      <Detail />
       <Footer />
-    </Fragment>
+    </Wrapper>
   );
 }
 
