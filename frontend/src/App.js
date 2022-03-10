@@ -11,9 +11,9 @@ function App() {
   return (
     <Wrapper>
       <Header />
-      {/*<MovieSlide />
-      <Home />*/}
-      <Detail />
+      <MovieSlide />
+      <Home />
+      {/*<Detail />*/}
       <Footer />
     </Wrapper>
   );
