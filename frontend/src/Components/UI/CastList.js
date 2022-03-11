@@ -12,7 +12,8 @@ const CastList = (props) => {
     const getCasts = async () => {
       try {
         response = await tmbdApi.getActors(props.cat, props.id);
-        setCasts(response.cast.slice(0, 5));
+        console.log(response);
+        setCasts(response.data.cast.slice(0, 5));
       } catch (error) {
         console.log(error);
       }

@@ -7,12 +7,14 @@ import classes from "./Detail.module.css";
 
 const Detail = () => {
   const { category, id } = useParams();
+  console.log(category, id);
   const [item, setItem] = useState(null);
   useEffect(() => {
     const getDetail = async () => {
       try {
         const response = await tmbdApi.detail(category, id, { params: {} });
-        setItem(response);
+        console.log(response.data);
+        setItem(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -37,9 +39,9 @@ const Detail = () => {
               <div
                 className={classes["poster-img"]}
                 style={{
-                  backgroundImage: `url${apiMovie.w300Image(
+                  backgroundImage: `url(${apiMovie.w300Image(
                     item.poster_path || item.backdrop_path
-                  )}`,
+                  )})`,
                 }}
               ></div>
             </div>
@@ -70,7 +72,7 @@ const Detail = () => {
                 <div class="cast-header">
                   <h2>Casts</h2>
                 </div>
-                <CastList cat={category} id={id} />
+                <CastList cat={category} id={item.id} />
               </div>
             </div>
           </div>
