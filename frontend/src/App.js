@@ -1,6 +1,5 @@
 import Footer from "./Components/Layout/Footer";
 import Header from "./Components/Layout/Header";
-import MovieSlide from "./Components/UI/MovieSlide";
 import { BrowserRouter, Route } from "react-router-dom";
 import Routor from "./routes";
 

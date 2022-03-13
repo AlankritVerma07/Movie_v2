@@ -1,66 +1,71 @@
+import { Fragment } from "react";
 import { category, movieType, tvType } from "../api/tmbdApi";
 import MovieList from "../Components/UI/MovieList";
+import MovieSlide from "../Components/UI/MovieSlide";
 import classes from "./Home.module.css";
 
 const Home = () => {
   return (
-    <section className={classes.showCase}>
-      <div className={classes["showCase-1"]}>
-        <div className={classes["showCase-title-1"]}>
-          <h2>Trending Movies</h2>
-          <a href="#">
-            <button
-              className={`${classes["btn-trailer"]} ${classes["btn-more"]}`}
-            >
-              View more
-            </button>
-          </a>
+    <Fragment>
+      <MovieSlide />
+      <section className={classes.showCase}>
+        <div className={classes["showCase-1"]}>
+          <div className={classes["showCase-title-1"]}>
+            <h2>Trending Movies</h2>
+            <a href="#">
+              <button
+                className={`${classes["btn-trailer"]} ${classes["btn-more"]}`}
+              >
+                View more
+              </button>
+            </a>
+          </div>
+          <MovieList category={category.movie} type={movieType.popular} />
         </div>
-        <MovieList category={category.movie} type={movieType.popular} />
-      </div>
 
-      <div className={classes["showCase-2"]}>
-        <div className={classes["showCase-title-1"]}>
-          <h2>Top Rated Movies</h2>
-          <a href="#">
-            <button
-              className={`${classes["btn-trailer"]} ${classes["btn-more"]}`}
-            >
-              View more
-            </button>
-          </a>
+        <div className={classes["showCase-2"]}>
+          <div className={classes["showCase-title-1"]}>
+            <h2>Top Rated Movies</h2>
+            <a href="#">
+              <button
+                className={`${classes["btn-trailer"]} ${classes["btn-more"]}`}
+              >
+                View more
+              </button>
+            </a>
+          </div>
+          <MovieList category={category.movie} type={movieType.top_rated} />
         </div>
-        <MovieList category={category.movie} type={movieType.top_rated} />
-      </div>
 
-      <div className={classes["showCase-2"]}>
-        <div className={classes["showCase-title-1"]}>
-          <h2>Trending TV</h2>
-          <a href="#">
-            <button
-              className={`${classes["btn-trailer"]} ${classes["btn-more"]}`}
-            >
-              View more
-            </button>
-          </a>
+        <div className={classes["showCase-2"]}>
+          <div className={classes["showCase-title-1"]}>
+            <h2>Trending TV</h2>
+            <a href="#">
+              <button
+                className={`${classes["btn-trailer"]} ${classes["btn-more"]}`}
+              >
+                View more
+              </button>
+            </a>
+          </div>
+          <MovieList category={category.tv} type={tvType.popular} />
         </div>
-        <MovieList category={category.tv} type={tvType.popular} />
-      </div>
 
-      <div className={classes["showCase-2"]}>
-        <div className={classes["showCase-title-1"]}>
-          <h2>Top Rated TV</h2>
-          <a href="#">
-            <button
-              className={`${classes["btn-trailer"]} ${classes["btn-more"]}`}
-            >
-              View more
-            </button>
-          </a>
+        <div className={classes["showCase-2"]}>
+          <div className={classes["showCase-title-1"]}>
+            <h2>Top Rated TV</h2>
+            <a href="#">
+              <button
+                className={`${classes["btn-trailer"]} ${classes["btn-more"]}`}
+              >
+                View more
+              </button>
+            </a>
+          </div>
+          <MovieList category={category.tv} type={tvType.top_rated} />
         </div>
-        <MovieList category={category.tv} type={tvType.top_rated} />
-      </div>
-    </section>
+      </section>
+    </Fragment>
   );
 };
 
