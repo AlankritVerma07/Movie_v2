@@ -1,6 +1,12 @@
 .header {
-  background-color: var(--color1);
-  height: 5rem;
+  /* background-color: var(--color1);
+  height: 5rem; */
+  height: 8rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
 }
 header {
   padding: 1rem;

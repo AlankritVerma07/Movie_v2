@@ -13,6 +13,7 @@ import tmdbApi, { movieType, category } from "../../api/tmbdApi";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/autoplay";
 
 const MovieSlide = () => {
   // SwiperCore.use([Autoplay, Navigation, Pagination]);
@@ -38,6 +39,7 @@ const MovieSlide = () => {
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         loop={true}
+        autoplay={{ delay: 4000 }}
         grabCursor={true}
         spaceBetween={0}
         slidesPerView={1}

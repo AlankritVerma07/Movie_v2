@@ -4,6 +4,7 @@ import apiMovie from "../api/apiMovie";
 import { useParams } from "react-router-dom";
 import CastList from "../Components/UI/CastList";
 import MovieList from "../Components/UI/MovieList";
+
 import classes from "./Detail.module.css";
 
 import "react-image-gallery/styles/css/image-gallery.css";
@@ -11,7 +12,7 @@ import ImageList from "../Components/UI/ImageList";
 
 const Detail = () => {
   const { category, id } = useParams();
-  console.log(category, id);
+  // console.log(category, id);
   const [item, setItem] = useState(null);
   useEffect(() => {
     const getDetail = async () => {
@@ -81,6 +82,7 @@ const Detail = () => {
             </div>
           </div>
           <ImageList />
+
           <div className={classes.similar}>
             <h2 className={classes["similar-header"]}>Similar</h2>
             <MovieList category={category} type="similar" id={item.id} />
