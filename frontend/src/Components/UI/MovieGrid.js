@@ -52,12 +52,14 @@ const MovieGrid = (props) => {
     <Fragment>
       <div className={classes["movieList-grid"]}>
         {items.map((item, i) => (
-          <MovieCard
-            item={item}
-            category={props.category}
-            genres={genresArr}
-            key={i}
-          />
+          <div className={`low ${classes["low-body"]}`}>
+            <MovieCard
+              item={item}
+              category={props.category}
+              genres={genresArr}
+              key={i}
+            />
+          </div>
         ))}
       </div>
       <div className={classes["movieList-loadMore"]}>

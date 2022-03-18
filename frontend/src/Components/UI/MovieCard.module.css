@@ -13,12 +13,14 @@
 .card-body-wrapper {
   position: absolute;
   top: 50%;
+  width: 100%;
   /* left: 0px;
   right: -16px; */
 }
 .card-body {
   position: relative;
-  bottom: -226px;
+  /* bottom: -226px; */
+  bottom: -320px;
   transition: 250ms ease-in;
 }
 .card-body a {
@@ -54,8 +56,9 @@
   text-align: center;
   display: block;
   /* z-index: 100; */
-  min-width: 20px;
-  height: 20px;
+  /* min-width: 20px;
+  height: 20px; */
+  min-width: 25px;
   font-size: 0.8rem;
   border-radius: 50%;
   border: 2px solid #343a40;

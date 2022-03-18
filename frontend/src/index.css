@@ -88,3 +88,11 @@ div.swiper-button-prev:hover {
 .image-gallery-content .image-gallery-slide .image-gallery-image {
   max-height: unset !important;
 }
+
+.low {
+  transition: all 250ms ease-in;
+}
+.low:hover .card-body {
+  bottom: 0;
+  z-index: 1001;
+}

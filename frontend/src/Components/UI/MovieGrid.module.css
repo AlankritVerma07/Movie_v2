@@ -51,3 +51,7 @@
 .movieList-loadMore {
   text-align: center;
 }
+.low-body {
+  position: relative;
+  z-index: 9;
+}
