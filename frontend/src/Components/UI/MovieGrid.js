@@ -48,6 +48,41 @@ const MovieGrid = (props) => {
     };
     getList();
   }, [keyword, props.category]);
+
+  const loadMore = async () => {
+    let response,
+      genresResponse = null;
+    if (keyword === undefined) {
+      const params = {
+        page: page + 1,
+      };
+      try {
+        genresResponse = await tmbdApi.getGenres(props.category);
+        setGenresArr(genresResponse.data.genres);
+
+        switch (props.category) {
+          case category.movie:
+            response = await tmbdApi.getMoviesList(movieType.upcoming, {
+              params,
+            });
+            break;
+          default:
+            response = await tmbdApi.getTvList(tvType.popular, { params });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      const params = {
+        page: page + 1,
+        query: keyword,
+      };
+      response = await tmbdApi.search(props.category, { params });
+    }
+    setItems([...items, ...response.data.results]);
+    setPage(page + 1);
+  };
+
   return (
     <Fragment>
       <div className={classes["movieList-grid"]}>
@@ -63,9 +98,14 @@ const MovieGrid = (props) => {
         ))}
       </div>
       <div className={classes["movieList-loadMore"]}>
-        <button className={`${classes["btn-trailer"]} ${classes["btn-more"]}`}>
-          View more
-        </button>
+        {page < totalPage ? (
+          <button
+            className={`${classes["btn-trailer"]} ${classes["btn-more"]}`}
+            onClick={loadMore}
+          >
+            View more
+          </button>
+        ) : null}
       </div>
     </Fragment>
   );
