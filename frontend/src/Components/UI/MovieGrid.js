@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import tmbdApi, { category, movieType, tvType } from "../../api/tmbdApi";
 import MovieCard from "./MovieCard";
 import classes from "./MovieGrid.module.css";
@@ -108,6 +108,38 @@ const MovieGrid = (props) => {
         ) : null}
       </div>
     </Fragment>
+  );
+};
+export const MovieSearch = () => {
+  const history = useNavigate();
+  const { category, keyword } = useParams();
+  console.log(category, keyword);
+  const [query, setQuery] = useState(keyword);
+  const onChangeHandler = (e) => {
+    const query = e.target.value;
+    setQuery(query);
+    if (query.trim().length > 0) {
+      history(`/${category}/search/${query}`);
+    }
+    // else if (query.length === 0) {
+    //   history.push(`/`);
+    // }
+  };
+
+  return (
+    <div className={classes["movie-search"]}>
+      <input
+        name="search"
+        type="text"
+        placeholder="Search by movie title"
+        onChange={onChangeHandler}
+        value={query}
+      />
+      <i
+        className={`fas fa-search ${classes["search-btn"]}`}
+        aria-hidden="true"
+      ></i>
+    </div>
   );
 };
 

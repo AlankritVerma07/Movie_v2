@@ -1,5 +1,6 @@
 import classes from "./Header.module.css";
 import logo from "../../assets/logo.svg";
+import { MovieSearch } from "../UI/MovieGrid";
 
 const Header = () => {
   return (
@@ -14,7 +15,8 @@ const Header = () => {
               </div>
             </li>
             <li>
-              <div className={classes["movie-search"]}>
+              <MovieSearch />
+              {/*<div className={classes["movie-search"]}>
                 <input
                   name="search"
                   type="text"
@@ -25,7 +27,7 @@ const Header = () => {
                   className={`fas fa-search ${classes["search-btn"]}`}
                   aria-hidden="true"
                 ></i>
-              </div>
+  </div>*/}
             </li>
             <li className={classes.fancy}>
               <a href="#">Home</a>
