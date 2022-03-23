@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import tmbdApi, { category, movieType, tvType } from "../../api/tmbdApi";
 import MovieCard from "./MovieCard";
 import classes from "./MovieGrid.module.css";
@@ -110,16 +110,22 @@ const MovieGrid = (props) => {
     </Fragment>
   );
 };
-export const MovieSearch = () => {
+export const MovieSearch = (props) => {
   const history = useNavigate();
-  const { category, keyword } = useParams();
-  console.log(category, keyword);
-  const [query, setQuery] = useState(keyword);
+  //   const location = useLocation();
+  //   let key = "";
+  //   console.log(location);
+  //   if (location.pathname === "/tv") key = "/tv";
+  //   else if (location.pathname === "/movie") key = "/movie";
+  //   else key = "/movie";
+  //   const { category, keyword } = useParams();
+  //   console.log(category, keyword);
+  const [query, setQuery] = useState("");
   const onChangeHandler = (e) => {
     const query = e.target.value;
     setQuery(query);
     if (query.trim().length > 0) {
-      history(`/${category}/search/${query}`);
+      history(`/${props.category}/search/${query}`);
     }
     // else if (query.length === 0) {
     //   history.push(`/`);
