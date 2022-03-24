@@ -112,14 +112,7 @@ const MovieGrid = (props) => {
 };
 export const MovieSearch = (props) => {
   const history = useNavigate();
-  //   const location = useLocation();
-  //   let key = "";
-  //   console.log(location);
-  //   if (location.pathname === "/tv") key = "/tv";
-  //   else if (location.pathname === "/movie") key = "/movie";
-  //   else key = "/movie";
-  //   const { category, keyword } = useParams();
-  //   console.log(category, keyword);
+
   const [query, setQuery] = useState("");
   const onChangeHandler = (e) => {
     const query = e.target.value;
@@ -127,9 +120,6 @@ export const MovieSearch = (props) => {
     if (query.trim().length > 0) {
       history(`/${props.category}/search/${query}`);
     }
-    // else if (query.length === 0) {
-    //   history.push(`/`);
-    // }
   };
 
   return (

@@ -75,6 +75,20 @@ nav ul {
   transform-origin: left;
 }
 
+.active {
+  color: var(--brandColor);
+}
+.fancy a.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  transition: width 0.5s ease;
+  height: 2px;
+  background-color: var(--brandColor);
+}
+
 .logo {
   display: flex;
   align-items: center;
@@ -89,7 +103,7 @@ nav ul {
   padding-bottom: 1rem;
 }
 
-.movie-search {
+/* .movie-search {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -114,7 +128,7 @@ input {
 .search-btn {
   color: #adb5bd;
   margin-right: auto;
-}
+} */
 
 nav li:nth-child(3),
 nav li:nth-child(4),
