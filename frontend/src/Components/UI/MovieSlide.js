@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,26 +15,30 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
+import { fetchPopularMovies } from "../../actions/movie-action";
 
 const MovieSlide = () => {
+  const dispatch = useDispatch();
+  const movieItems = useSelector((state) => state.popularMovie.movieItems);
   // SwiperCore.use([Autoplay, Navigation, Pagination]);
-  const [movieItems, setMovieItems] = useState([]);
+  // const [movieItems, setMovieItems] = useState([]);
   useEffect(() => {
-    const getMovies = async () => {
-      const params = { page: 1 };
-      try {
-        const response = await tmdbApi.getMoviesList(movieType.popular, {
-          params,
-        });
-        // console.log(response);
-        // console.log(response.data.results);
-        setMovieItems(response.data.results.slice(1, 7));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getMovies();
-  }, []);
+    // const getMovies = async () => {
+    const params = { page: 1 };
+    dispatch(fetchPopularMovies(movieType.popular, { params }));
+    //   try {
+    //     const response = await tmdbApi.getMoviesList(movieType.popular, {
+    //       params,
+    //     });
+    //     // console.log(response);
+    //     // console.log(response.data.results);
+    //     setMovieItems(response.data.results.slice(1, 7));
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
+    // getMovies();
+  }, [dispatch]);
   return (
     <div className={classes.per}>
       <Swiper
