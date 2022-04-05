@@ -1,10 +1,13 @@
 import { Fragment } from "react";
+import { Link } from "react-router-dom";
 import apiMovie from "../../api/apiMovie";
+import { category } from "../../api/tmbdApi";
 import classes from "./MovieCard.module.css";
 
 const MovieCard = (props) => {
   const item = props.item;
   const genres = props.genres;
+  const link = "/" + category[props.category] + "/" + item.id;
   let genresStr = "";
   genresStr = item.genre_ids;
   genresStr = genresStr
@@ -22,24 +25,24 @@ const MovieCard = (props) => {
     item.original_title || item.title || item.name || item.original_name;
   return (
     <Fragment>
-      <a href="#">
+      <Link to={link}>
         <div
           className={classes["movie-card"]}
           style={{ backgroundImage: `url(${background})` }}
         ></div>
         <div className={classes["card-body-wrapper"]}>
           <div className={`card-body ${classes["card-body"]}`}>
-            <a href="#">
+            <Link to={link}>
               <span className={classes["card-rating"]}>
                 {item.vote_average}
               </span>
               <div className={classes["card-body-title"]}>{title}</div>
               <p className={classes["card-categories"]}>{genresStr}</p>
-            </a>
+            </Link>
           </div>
         </div>
         {/*<h3>{title}</h3>*/}
-      </a>
+      </Link>
     </Fragment>
   );
 };
