@@ -1,10 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
-  text: "",
   movieItems: [],
   loading: false,
-  movie: [],
 };
 
 const popularMovieSlice = createSlice({

@@ -13,6 +13,7 @@ import "./MovieList.css";
 const MovieList = (props) => {
   const [listItems, setListItems] = useState([]);
   const [genresArr, setGenresArr] = useState([]);
+
   useEffect(() => {
     const getList = async () => {
       const params = {};
@@ -22,19 +23,21 @@ const MovieList = (props) => {
       try {
         genresResponse = await tmbdApi.getGenres(props.category);
         setGenresArr(genresResponse.data.genres);
+
         if (props.type !== "similar") {
           switch (props.category) {
             case category.movie:
               response = await tmbdApi.getMoviesList(props.type, {
                 params,
               });
+
               break;
             default:
               response = await tmbdApi.getTvList(props.type, { params });
           }
         } else response = await tmbdApi.similar(props.category, props.id);
         setListItems(response.data.results);
-        // console.log(response.data.results);
+        console.log(response.data.results);
       } catch (error) {
         console.log(error);
       }

@@ -1,85 +1,74 @@
 import { Fragment, useEffect, useState } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
-import tmbdApi, { category, movieType, tvType } from "../../api/tmbdApi";
+import { useParams, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { category, movieType, tvType } from "../../api/tmbdApi";
 import MovieCard from "./MovieCard";
 import classes from "./MovieGrid.module.css";
+import { searchTextAction } from "../../slices/searchTextSlice";
+import { fetchGenresArr } from "../../actions/genres-action";
+import {
+  fetchMovieList,
+  fetchTvList,
+  loadMoreMovieList,
+  loadMoreSearchResults,
+  loadMoreTvList,
+  searchMovieTv,
+} from "../../actions/movieList-action";
 
 const MovieGrid = (props) => {
-  const [items, setItems] = useState([]);
-  const [genresArr, setGenresArr] = useState([]);
   const [page, setPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(0);
+
+  const genresArr = useSelector((state) => state.genres.genresArr);
+  const items = useSelector((state) => state.movieList.movieListArr);
+  const totalPage = useSelector((state) => state.movieList.totalPage);
+
+  const dispatch = useDispatch();
 
   const { keyword } = useParams();
-  console.log(keyword);
-  useEffect(() => {
-    const getList = async () => {
-      //   const params = {};
-      // const genresArr=[]
-      let response,
-        genresResponse = null;
-      if (keyword === undefined) {
-        const params = {};
-        try {
-          genresResponse = await tmbdApi.getGenres(props.category);
-          setGenresArr(genresResponse.data.genres);
 
-          switch (props.category) {
-            case category.movie:
-              response = await tmbdApi.getMoviesList(movieType.upcoming, {
-                params,
-              });
-              break;
-            default:
-              response = await tmbdApi.getTvList(tvType.popular, { params });
-          }
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        const params = {
-          query: keyword,
-        };
-        response = await tmbdApi.search(props.category, { params });
+  useEffect(() => {
+    if (keyword === undefined) {
+      dispatch(fetchGenresArr(props.category));
+
+      switch (props.category) {
+        case category.movie:
+          dispatch(fetchMovieList(movieType.upcoming));
+          break;
+        default:
+          dispatch(fetchTvList(tvType.popular));
       }
-      console.log(response);
-      setItems(response.data.results);
-      setTotalPage(response.data.total_pages);
-    };
-    getList();
-  }, [keyword, props.category]);
+    } else {
+      const params = {
+        query: keyword,
+      };
+
+      dispatch(searchMovieTv(props.category, { params }));
+    }
+  }, [keyword, props.category, dispatch]);
 
   const loadMore = async () => {
-    let response,
-      genresResponse = null;
     if (keyword === undefined) {
       const params = {
         page: page + 1,
       };
-      try {
-        genresResponse = await tmbdApi.getGenres(props.category);
-        setGenresArr(genresResponse.data.genres);
 
-        switch (props.category) {
-          case category.movie:
-            response = await tmbdApi.getMoviesList(movieType.upcoming, {
-              params,
-            });
-            break;
-          default:
-            response = await tmbdApi.getTvList(tvType.popular, { params });
-        }
-      } catch (error) {
-        console.log(error);
+      dispatch(fetchGenresArr(props.category));
+
+      switch (props.category) {
+        case category.movie:
+          dispatch(loadMoreMovieList(movieType.upcoming, { params }));
+          break;
+        default:
+          dispatch(loadMoreTvList(tvType.popular, { params }));
       }
     } else {
       const params = {
         page: page + 1,
         query: keyword,
       };
-      response = await tmbdApi.search(props.category, { params });
+
+      dispatch(loadMoreSearchResults(props.category, { params }));
     }
-    setItems([...items, ...response.data.results]);
     setPage(page + 1);
   };
 
@@ -112,11 +101,13 @@ const MovieGrid = (props) => {
 };
 export const MovieSearch = (props) => {
   const history = useNavigate();
+  const query = useSelector((state) => state.searchText.text);
+  const dispatch = useDispatch();
 
-  const [query, setQuery] = useState("");
   const onChangeHandler = (e) => {
     const query = e.target.value;
-    setQuery(query);
+    dispatch(searchTextAction.searchText(query));
+
     if (query.trim().length > 0) {
       history(`/${props.category}/search/${query}`);
     }
