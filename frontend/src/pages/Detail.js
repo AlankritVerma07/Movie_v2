@@ -20,6 +20,7 @@ const Detail = () => {
         const response = await tmbdApi.detail(category, id, { params: {} });
         console.log(response.data);
         setItem(response.data);
+        window.scrollTo(0, 0);
       } catch (error) {
         console.log(error);
       }

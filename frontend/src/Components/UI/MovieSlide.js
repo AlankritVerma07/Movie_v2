@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Autoplay, Navigation, Pagination } from "swiper";
@@ -6,13 +6,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import classes from "./MovieSlide.module.css";
 import apiMovie from "../../api/apiMovie";
-import { movieType } from "../../api/tmbdApi";
+import tmbdApi, { category, movieType } from "../../api/tmbdApi";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import { fetchPopularMovies } from "../../actions/movie-action";
+import YoutubeEmbed, { Modal } from "./Modal";
 
 const MovieSlide = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const MovieSlide = () => {
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         loop={true}
-        autoplay={{ delay: 4000 }}
+        //autoplay={{ delay: 4000 }}
         grabCursor={true}
         spaceBetween={0}
         slidesPerView={1}
@@ -59,32 +60,65 @@ const MovieSlide = () => {
   );
 };
 const SlideItem = (props) => {
+  const [id, setId] = useState("");
+  const [modalVideoOpened, setModalVideoOpened] = useState(false);
   const item = props.item;
   const background = apiMovie.originalImage(
     item.backdrop_path ? item.backdrop_path : item.poster_path
   );
+
+  const openModalVideoHandler = () => {
+    setModalVideoOpened(true);
+  };
+
+  const closeModalVideoHandler = () => {
+    setModalVideoOpened(false);
+  };
+  const setModalActive = async () => {
+    const videos = await tmbdApi.getVideos(category.movie, item.id);
+    console.log(videos);
+    if (videos.data.results.length > 0) {
+      const videSrc =
+        "https://www.youtube.com/embed/" + videos.data.results[3].key;
+      setId(videSrc);
+      openModalVideoHandler();
+    }
+  };
   return (
-    <div
-      className={classes["items-container"]}
-      style={{ backgroundImage: `url(${background})` }}
-    >
-      <div className={classes["details-container"]}>
-        <div className={classes.info}>
-          <h2 className={classes.title}>{item.title}</h2>
-          <div className={classes["title-details"]}>{item.overview}.</div>
-          <div className={classes.btns}>
-            <button className={classes["btn-now"]}>Watch Now</button>
-            <button className={classes["btn-trailer"]}>Watch Trailer</button>
+    <Fragment>
+      <div
+        className={classes["items-container"]}
+        style={{ backgroundImage: `url(${background})` }}
+      >
+        <div className={classes["details-container"]}>
+          <div className={classes.info}>
+            <h2 className={classes.title}>{item.title}</h2>
+            <div className={classes["title-details"]}>{item.overview}.</div>
+            <div className={classes.btns}>
+              <button className={classes["btn-now"]}>Watch Now</button>
+              <button
+                className={classes["btn-trailer"]}
+                onClick={setModalActive}
+              >
+                Watch Trailer
+              </button>
+            </div>
+          </div>
+          <div className={classes.poster}>
+            <img
+              src={apiMovie.w500Image(item.poster_path)}
+              alt="Poster of the displayed movie"
+            />
           </div>
         </div>
-        <div className={classes.poster}>
-          <img
-            src={apiMovie.w500Image(item.poster_path)}
-            alt="Poster of the displayed movie"
-          />
-        </div>
       </div>
-    </div>
+      {modalVideoOpened && (
+        <Modal onClose={closeModalVideoHandler}>
+          <YoutubeEmbed embedId={id} />
+        </Modal>
+      )}
+    </Fragment>
   );
 };
+
 export default MovieSlide;
