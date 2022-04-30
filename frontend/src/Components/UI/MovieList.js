@@ -52,8 +52,33 @@ const MovieList = (props) => {
         loop={true}
         grabCursor={true}
         spaceBetween={10}
-        slidesPerView={6}
-        slidesPerGroup={3}
+        // slidesPerView={6}
+        //slidesPerGroup={3}
+        breakpoints={{
+          100: {
+            spaceBetween: 5,
+            slidesPerGroup: 1,
+
+            slidesPerView: 2,
+          },
+          340: {
+            spaceBetween: 5,
+            slidesPerGroup: 1,
+
+            slidesPerView: 2,
+          },
+          600: {
+            spaceBetween: 5,
+            slidesPerGroup: 2,
+
+            slidesPerView: 3,
+          },
+          1020: {
+            spaceBetween: 10,
+            slidesPerView: 6,
+            slidesPerGroup: 3,
+          },
+        }}
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
