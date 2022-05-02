@@ -84,3 +84,15 @@ input {
   color: #adb5bd;
   margin-right: auto;
 }
+
+@media (max-width: 800px) {
+  .movie-search {
+    flex-basis: 60%;
+  }
+}
+@media (max-width: 500px) {
+  .movie-search {
+    flex-basis: 100%;
+    order: 3;
+  }
+}

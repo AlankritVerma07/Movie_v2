@@ -2,6 +2,7 @@ import classes from "./Header.module.css";
 import logo from "../../assets/logo.svg";
 import { MovieSearch } from "../UI/MovieGrid";
 import { Link, useLocation, NavLink } from "react-router-dom";
+import { useEffect, useRef } from "react";
 const headerNav = [
   {
     display: "Home",
@@ -19,14 +20,30 @@ const headerNav = [
 
 const Header = () => {
   const { pathname } = useLocation();
+  const headerRef = useRef(null);
   console.log(pathname);
   const key = pathname.split("/");
   let category = key[1];
   if (category === "") category = "movie";
-
+  useEffect(() => {
+    const shrinkHeader = () => {
+      if (
+        document.body.scrollTop > 100 ||
+        document.documentElement.scrollTop > 100
+      ) {
+        headerRef.current.classList.add("shrink");
+      } else {
+        headerRef.current.classList.remove("shrink");
+      }
+    };
+    window.addEventListener("scroll", shrinkHeader);
+    return () => {
+      window.removeEventListener("scroll", shrinkHeader);
+    };
+  }, []);
   console.log(category);
   return (
-    <div className={classes.header}>
+    <div ref={headerRef} className="header">
       <header>
         <div className={classes.logo}>
           <img src={logo} alt="Logo for the app" />

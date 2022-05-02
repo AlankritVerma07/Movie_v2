@@ -96,3 +96,34 @@ div.swiper-button-prev:hover {
   bottom: 0;
   z-index: 1001;
 }
+.header {
+  /* background-color: var(--color1);
+  height: 5rem; */
+  height: 8rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  transition: height 0.3s ease, background-color 0.3s ease;
+}
+.shrink {
+  height: 6rem;
+  background-color: #0f0f0f;
+}
+
+@media (max-width: 600px) {
+  div.swiper-button-next::after,
+  div.swiper-button-prev::after {
+    font-size: 30px !important;
+  }
+  .swiper-button-prev,
+  .swiper-rtl .swiper-button-next {
+    left: 2px !important;
+  }
+}
+@media (max-width: 500px) {
+  .shrink {
+    height: 10rem;
+  }
+}
