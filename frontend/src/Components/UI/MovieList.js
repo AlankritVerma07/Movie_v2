@@ -7,7 +7,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import tmbdApi, { category } from "../../api/tmbdApi";
 import MovieCard from "./MovieCard";
-// import classes from "./MovieList.module.css";
 import "./MovieList.css";
 
 const MovieList = (props) => {
@@ -17,7 +16,7 @@ const MovieList = (props) => {
   useEffect(() => {
     const getList = async () => {
       const params = {};
-      // const genresArr=[]
+
       let response,
         genresResponse = null;
       try {
@@ -43,7 +42,7 @@ const MovieList = (props) => {
       }
     };
     getList();
-  }, []);
+  }, [props.category, props.id, props.type]);
 
   return (
     <div class="showCase-movieList-1">

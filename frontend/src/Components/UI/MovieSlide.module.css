@@ -171,11 +171,15 @@ div.button-prev2 {
     padding: 0 3rem;
   }
 }
+
 @media (max-width: 340px) {
-  .btn-trailer {
-    margin-left: 0.5rem;
+  .info {
+    padding: 0 2rem;
   }
-  .btn-now {
-    padding: 0.5rem 0.8rem;
+}
+
+@media (max-width: 310px) {
+  .info {
+    padding: 0 1rem;
   }
 }

@@ -3,6 +3,7 @@ import { category, movieType, tvType } from "../api/tmbdApi";
 import MovieList from "../Components/UI/MovieList";
 import MovieSlide from "../Components/UI/MovieSlide";
 import classes from "./Home.module.css";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -12,13 +13,13 @@ const Home = () => {
         <div className={classes["showCase-1"]}>
           <div className={classes["showCase-title-1"]}>
             <h2>Trending Movies</h2>
-            <a href="#">
+            <Link to="/movie">
               <button
                 className={`${classes["btn-trailer"]} ${classes["btn-more"]}`}
               >
                 View more
               </button>
-            </a>
+            </Link>
           </div>
           <MovieList category={category.movie} type={movieType.popular} />
         </div>
@@ -26,13 +27,13 @@ const Home = () => {
         <div className={classes["showCase-2"]}>
           <div className={classes["showCase-title-1"]}>
             <h2>Top Rated Movies</h2>
-            <a href="#">
+            <Link to="/tv">
               <button
                 className={`${classes["btn-trailer"]} ${classes["btn-more"]}`}
               >
                 View more
               </button>
-            </a>
+            </Link>
           </div>
           <MovieList category={category.movie} type={movieType.top_rated} />
         </div>
@@ -40,13 +41,13 @@ const Home = () => {
         <div className={classes["showCase-2"]}>
           <div className={classes["showCase-title-1"]}>
             <h2>Trending TV</h2>
-            <a href="#">
+            <Link to="/movie">
               <button
                 className={`${classes["btn-trailer"]} ${classes["btn-more"]}`}
               >
                 View more
               </button>
-            </a>
+            </Link>
           </div>
           <MovieList category={category.tv} type={tvType.popular} />
         </div>
@@ -54,13 +55,13 @@ const Home = () => {
         <div className={classes["showCase-2"]}>
           <div className={classes["showCase-title-1"]}>
             <h2>Top Rated TV</h2>
-            <a href="#">
+            <Link to="/tv">
               <button
                 className={`${classes["btn-trailer"]} ${classes["btn-more"]}`}
               >
                 View more
               </button>
-            </a>
+            </Link>
           </div>
           <MovieList category={category.tv} type={tvType.top_rated} />
         </div>

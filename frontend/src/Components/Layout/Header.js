@@ -3,20 +3,6 @@ import logo from "../../assets/logo.svg";
 import { MovieSearch } from "../UI/MovieGrid";
 import { Link, useLocation, NavLink } from "react-router-dom";
 import { useEffect, useRef } from "react";
-const headerNav = [
-  {
-    display: "Home",
-    path: "/",
-  },
-  {
-    display: "Movies",
-    path: "/movie",
-  },
-  {
-    display: "TV Series",
-    path: "/tv",
-  },
-];
 
 const Header = () => {
   const { pathname } = useLocation();
@@ -101,9 +87,9 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <a href="#">
+              <Link to="#">
                 <button className={classes["btn-auth"]}>Sign up</button>
-              </a>
+              </Link>
             </li>
           </ul>
           <a

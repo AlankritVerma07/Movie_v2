@@ -14,6 +14,7 @@ import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import { fetchPopularMovies } from "../../actions/movie-action";
 import YoutubeEmbed, { Modal } from "./Modal";
+import { useNavigate } from "react-router-dom";
 
 const MovieSlide = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const MovieSlide = () => {
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         loop={true}
-        //autoplay={{ delay: 4000 }}
+        autoplay={{ delay: 4000 }}
         grabCursor={true}
         spaceBetween={0}
         slidesPerView={1}
@@ -61,6 +62,7 @@ const MovieSlide = () => {
 };
 const SlideItem = (props) => {
   const [id, setId] = useState("");
+  const history = useNavigate();
   const [modalVideoOpened, setModalVideoOpened] = useState(false);
   const item = props.item;
   const background = apiMovie.originalImage(
@@ -95,7 +97,12 @@ const SlideItem = (props) => {
             <h2 className={classes.title}>{item.title}</h2>
             <div className={classes["title-details"]}>{item.overview}.</div>
             <div className={classes.btns}>
-              <button className={classes["btn-now"]}>Watch Now</button>
+              <button
+                className={classes["btn-now"]}
+                onClick={() => history(`/movie/${item.id}`)}
+              >
+                Watch Now
+              </button>
               <button
                 className={classes["btn-trailer"]}
                 onClick={setModalActive}

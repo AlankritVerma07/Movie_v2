@@ -34,10 +34,17 @@ a {
   color: var(--txt-color);
 }
 
+.centered {
+  margin: 3rem auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 div.swiper-button-next,
 div.swiper-button-prev {
   color: rgb(255, 255, 255);
-  top: 40%;
 }
 div.swiper-button-next:hover,
 div.swiper-button-prev:hover {

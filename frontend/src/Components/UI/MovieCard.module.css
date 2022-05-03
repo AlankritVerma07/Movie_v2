@@ -14,12 +14,10 @@
   position: absolute;
   top: 50%;
   width: 100%;
-  /* left: 0px;
-  right: -16px; */
 }
 .card-body {
   position: relative;
-  /* bottom: -226px; */
+
   bottom: -320px;
   transition: 250ms ease-in;
 }
@@ -84,4 +82,15 @@
   /* overflow-wrap: break-word; */
   /* display: flex;
   flex-flow: row wrap; */
+}
+
+@media (max-width: 1020px) {
+  .card-rating {
+    min-width: 20px;
+    top: -25px;
+  }
+  .card-body-wrapper {
+    width: 80%;
+    left: 12%;
+  }
 }
