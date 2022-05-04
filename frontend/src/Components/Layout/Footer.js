@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { Link } from "react-router-dom";
 import logo from "../../assets/footer-logo.svg";
 import classes from "./Footer.module.css";
 
@@ -9,35 +10,35 @@ const Footer = () => {
       <footer>
         <div className={classes["footer-logo"]}>
           <img src={logo} alt="Logo for the app" />
-          <a href="#">LOGO</a>
+          <Link to="/">MOVEe</Link>
         </div>
         <div className={classes.social}>
           <h4>Stay Connected!</h4>
           <ul>
             <li>
-              <a href="#">
+              <Link to="#">
                 <i className="fab fa-facebook"></i>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#">
+              <Link to="#">
                 <i className="fab fa-twitter"></i>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#">
+              <Link to="#">
                 <i className="fab fa-instagram"></i>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#">
+              <Link to="#">
                 <i className="fab fa-github"></i>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#">
+              <Link to="#">
                 <i className="fab fa-linkedin"></i>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

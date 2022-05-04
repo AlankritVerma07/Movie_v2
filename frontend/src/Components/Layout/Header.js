@@ -33,7 +33,7 @@ const Header = () => {
       <header>
         <div className={classes.logo}>
           <img src={logo} alt="Logo for the app" />
-          <NavLink to="/">LOGO</NavLink>
+          <NavLink to="/">MOVEe</NavLink>
         </div>
         <MovieSearch category={category} />
         <a
