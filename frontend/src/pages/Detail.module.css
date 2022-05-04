@@ -39,9 +39,6 @@
 }
 .movie-poster {
   flex-basis: 28%;
-
-  /* flex: 1 1; */
-  /* width: 400px; */
 }
 .poster-img {
   background-position: center;
@@ -123,6 +120,19 @@
   margin-bottom: 3rem;
 }
 
-/* .similar-header {
-  margin-bottom: 2rem;
-} */
+@media (max-width: 600px) {
+  .movie-poster {
+    display: none;
+  }
+  .movie-info {
+    flex-basis: auto;
+  }
+  .rating {
+    position: unset;
+    margin: 10px;
+  }
+  .genres {
+    display: flex;
+    flex-flow: row wrap;
+  }
+}
