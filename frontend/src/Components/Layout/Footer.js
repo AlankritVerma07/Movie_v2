@@ -45,7 +45,7 @@ const Footer = () => {
         <div className={classes.message}>
           &copy; Made with&nbsp;
           <i className={`fas fa-heart ${classes.heart}`}></i> by&nbsp;
-          <a href="https://github.com/AlankritVerma07">Alan & Jackie</a>
+          <a href="https://github.com/AlankritVerma07">Alankrit & Jackie</a>
         </div>
       </footer>
     </Fragment>
